@@ -22,19 +22,19 @@ void r_turn(){
 }
 
 int main() 
-{
-	
-	
+{	
 	while (digital(r_bump)==0){ //Bot moves forward until the right senor activates
 		forward();
-		msleep(pause);
+	//	msleep(pause); I TOOK OUT YOUR MSLEEP.  THIS IS A PROBLEM SINCE BY PUTTING A PAUSE HERE YOU DO NOT ALLOW THE SENSORS TO BE READ.  WE JUST KEEP GOING FORWARD ONE SECOND AT A TIME.
 		
+		//THIS FIRST CONDITIONAL IS NOT NEEDED SINCE THE LOOP WILL EXIT AS SOON AS THE RIGHT BUMP IS PRESSED...
 		if (digital(r_bump)==1){//When the right sensor is activated bot turns right 
 			r_turn();
 		}
+		//IN THIS NEXT CONDITIONAL, THE ao(); SHOULD COME FIRST, THEN THE MSLEEP.  WE HAVE TO STOP GOING FORWARD, THEN WAIT A SECOND.
 		if ( digital(l_bump)==1){//When the left sensor activates bot stops completley 
 			msleep(pause);
 			ao();
 		}
 	}
-	}
+}
